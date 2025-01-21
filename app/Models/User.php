@@ -18,9 +18,11 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'nama_lengkap',
+        'nama_jurusan',
+        'nomor_telepon',
+        'tingkat_kelas',
+        'role'
     ];
 
     /**
@@ -44,5 +46,11 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    protected $primaryKey = 'id_user';
+    protected $table = 'users';
+    public function jurusan(){
+        return $this->belongsTo(Jurusan::class, 'nama_jurusan','id_jurusan');
     }
 }
