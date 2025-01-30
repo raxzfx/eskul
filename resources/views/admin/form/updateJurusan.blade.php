@@ -36,7 +36,7 @@
           </div>
 
         <div class="col-md- ">
-          <label for="validationCustom01" class="form-label">id jurusan</label>
+          <label for="validationCustom01" class="form-label">kode jurusan</label>
           <input type="text" class="form-control mb-3" id="validationCustom01" value="{{$jurusan->kode_jurusan}}" name="kode_jurusan" required>
           <div class="invalid-feedback">
             masukan nama lengkap anda dengan benar

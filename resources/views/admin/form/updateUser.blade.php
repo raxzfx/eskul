@@ -36,6 +36,13 @@
             masukan nama lengkap anda dengan benar
           </div>
 
+        <div class="col-md-">
+          <label for="validationCustom01" class="form-label">NIS/NIG</label>
+          <input type="text" class="form-control" id="validationCustom01" value="{{$user->nis_nig}}" name="nis_nig" required>
+          <div class="invalid-feedback">
+            masukan nama lengkap anda dengan benar
+          </div>
+
           <div class="col-md-">
             <label for="validationCustom04" class="form-label">jurusan</label>
             <select class="form-select" id="validationCustom04" name="nama_jurusan" required>

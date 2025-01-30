@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Jurusan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -39,7 +40,7 @@ class UserController extends Controller
            'nama_jurusan' => 'required',
            'nomor_telepon' => 'required',
            'tingkat_kelas' => 'required',
-           'password' => 'required',
+           'password' => 'nullable',
            'role' => 'required'
         ]);
 
@@ -53,13 +54,15 @@ class UserController extends Controller
             return redirect()->back()->withErrors(['error'=> 'nomor telepon sudah terdaftar, silahkan masukan dengan nama yang lain']);
         }
 
+        $password = $request->password ? Hash::make($request->password) : Hash::make('defaultpassword');
+
         User::create([
             'nama_lengkap' => $request->nama_lengkap,
             'nis_nig' => $request->nis_nig,
             'nama_jurusan' =>$request->nama_jurusan,
             'nomor_telepon' =>$request->nomor_telepon,
             'tingkat_kelas' => $request->tingkat_kelas,
-            'password' => $request->password,
+            'password' => $password,
             'role' => $request->role
         ]);
 
@@ -92,6 +95,7 @@ class UserController extends Controller
         $request->validate([
             'nama_lengkap' => 'required',
             'nama_jurusan' => 'required',
+            'nis_nig' => 'required',
             'nomor_telepon' => 'required',
             'tingkat_kelas' => 'required',
             'role' => 'required'

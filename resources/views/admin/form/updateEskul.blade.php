@@ -46,6 +46,14 @@
         </div>
 
         <div class="col-md-">
+          <label for="validationCustom05" class="form-label">Deskripsi</label>
+          <textarea class="form-control mb-3" id="validationCustom05" name="deskripsi" rows="4" required>{{ old('deskripsi', $eskul->deskripsi) }}</textarea>
+          <div class="invalid-feedback">
+              Masukkan deskripsi ekstrakurikuler.
+          </div>
+      </div>
+
+        <div class="col-md-">
             <label for="validationCustom04" class="form-label">Guru Pembina</label>
             <select class="form-select" id="validationCustom04" name="guru_eskul" required>
               <option selected disabled value="">Pilih nama guru yang sesuai dengan eskul</option>

@@ -50,7 +50,7 @@
                 @endforeach
                 </td>
                 <td>
-                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                  <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modalEskul{{$kul->id_eskul}}">
                     deskripsi
                   </button>
                 </td>
@@ -71,25 +71,27 @@
 
                   </td>
                 </tr>
+                
+    <!-- Modal Unik -->
+    <div class="modal fade" id="modalEskul{{$kul->id_eskul}}" tabindex="-1" aria-labelledby="modalEskulLabel{{$kul->id_eskul}}" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="modalEskulLabel{{$kul->id_eskul}}">Deskripsi Eskul</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  {{$kul->deskripsi}}
+              </div>
+          </div>
+      </div>
+  </div>
                 @endforeach
               </tbody>
             </table>
           </div>
         </div>
     </div>
-    <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">deskripsi eskul</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      {{$kul->deskripsi}}
-      </div>
-    </div>
-  </div>
-</div>
+  
   </div>
 @endsection

@@ -52,6 +52,13 @@
             masukan nama lengkap anda dengan benar
           </div>
 
+        <div class="col-md- mt-1">
+          <label for="validationCustom01" class="form-label">password</label>
+          <input type="number" class="form-control" id="validationCustom01" value="" name="password" >
+          <div class="invalid-feedback">
+            masukan nama lengkap anda dengan benar
+          </div>
+
           <div class="col-md- mt-1">
             <label for="validationCustom04" class="form-label">jurusan</label>
             <select class="form-select" id="validationCustom04" name="nama_jurusan" required>
