@@ -29,6 +29,7 @@
                 <tr>
                   <th scope="col">no</th>
                   <th scope="col">nama</th>
+                  <th scope="col">NIS/NIG</th>
                   <th scope="col">jurusan</th>
                   <th scope="col">tingkat kelas</th>
                   <th scope="col">no telp</th>
@@ -41,8 +42,21 @@
                 <tr>
                   <td>{{$loop->iteration}}</td>
                   <td>{{$user->nama_lengkap}}</td>
-                  <td>{{$user->jurusan->nama_jurusan}}</td>
-                  <td>{{$user->tingkat_kelas}}</td>
+                  <td>{{$user->nis_nig}}</td>
+                  <td>
+                    @if ($user->jurusan->nama_jurusan === '-')
+                      ini adalah guru
+                    @else
+                      {{$user->jurusan->nama_jurusan}}
+                    @endif
+                  </td>
+                  <td>
+                    @if ($user->tingkat_kelas == '-')
+                      ini adalah guru
+                    @else
+                      {{$user->tingkat_kelas}}
+                    @endif
+                  </td>
                   <td>{{$user->nomor_telepon}}</td>
                   <td>{{$user->role}}</td>
                   <td>

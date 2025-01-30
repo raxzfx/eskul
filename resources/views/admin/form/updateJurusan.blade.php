@@ -1,7 +1,6 @@
 @extends('template')
-@section('title','create user')
+@section('title','update jurusan')
 @section('content')
-
 <style>
     .form-control:focus{
         outline: none;
@@ -18,35 +17,27 @@
       <div
         class="d-flex align-items-left align-items-md-center flex-column flex-md-row pt-2 pb-4">
         <div>
-          <h3 class="fw-bold mb-3">ADD Jurusan</h3>
+          <h3 class="fw-bold mb-3">EDIT Jurusan</h3>
         </div>
       </div>
       
       <!--form add data-->
       <div class="card p-4">
-      <form class="row g-3 needs-validation" action="{{route('admin.jurusanStore')}}" method="POST" novalidate>
+      <form class="row g-3 needs-validation" action="{{route('admin.jurusanUpdate',$jurusan->id_jurusan)}}" method="POST" novalidate>
         
         @csrf
-
-        @if ($errors->any())
-          <div class="alert alert-danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-          </div>
-        @endif
+        @method('put')
 
         <div class="col-md- ">
           <label for="validationCustom01" class="form-label">nama jurusan</label>
-          <input type="text" class="form-control mb-3" id="validationCustom01" value="" name="nama_jurusan" required>
+          <input type="text" class="form-control mb-3" id="validationCustom01" value="{{$jurusan->nama_jurusan}}" name="nama_jurusan" required>
           <div class="invalid-feedback">
             masukan nama lengkap anda dengan benar
           </div>
+
         <div class="col-md- ">
-          <label for="validationCustom01" class="form-label">kode jurusan</label>
-          <input type="text" class="form-control mb-3" id="validationCustom01" value="" name="kode_jurusan" required>
+          <label for="validationCustom01" class="form-label">id jurusan</label>
+          <input type="text" class="form-control mb-3" id="validationCustom01" value="{{$jurusan->kode_jurusan}}" name="kode_jurusan" required>
           <div class="invalid-feedback">
             masukan nama lengkap anda dengan benar
           </div>
@@ -68,4 +59,4 @@
       </form>
     </div>
   </div>
-@endsection()
+@endsection

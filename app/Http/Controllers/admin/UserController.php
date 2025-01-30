@@ -24,7 +24,8 @@ class UserController extends Controller
     public function create()
     {
         $jurusan = Jurusan::all();
-        return view('admin.form.createUser',compact('jurusan'));
+        $pilihanRole = ['admin','siswa','kesiswaan','pembinaEskul'];
+        return view('admin.form.createUser',compact('jurusan','pilihanRole'));
     }
 
     /**
@@ -34,16 +35,32 @@ class UserController extends Controller
     {
         $validate = $request->validate([
            'nama_lengkap' => 'required',
+           'nis_nig' => 'required',
            'nama_jurusan' => 'required',
            'nomor_telepon' => 'required',
-           'tingkat_kelas' => 'required'
+           'tingkat_kelas' => 'required',
+           'password' => 'required',
+           'role' => 'required'
         ]);
+
+        //konflik nama yang sama
+        $konflikUser = User::where('nama_lengkap', $request->nama_lengkap)->exists();
+        $konflikNomer = User::where('nomor_telepon', $request->nomor_telepon)->exists();
+
+        if ($konflikUser) {
+            return redirect()->back()->withErrors(['error'=> 'nama sudah terdaftar, silahkan masukan dengan nama yang lain']);
+        } elseif ($konflikNomer){
+            return redirect()->back()->withErrors(['error'=> 'nomor telepon sudah terdaftar, silahkan masukan dengan nama yang lain']);
+        }
 
         User::create([
             'nama_lengkap' => $request->nama_lengkap,
+            'nis_nig' => $request->nis_nig,
             'nama_jurusan' =>$request->nama_jurusan,
             'nomor_telepon' =>$request->nomor_telepon,
             'tingkat_kelas' => $request->tingkat_kelas,
+            'password' => $request->password,
+            'role' => $request->role
         ]);
 
         return redirect()->route('admin.users');

@@ -14,10 +14,13 @@ return new class extends Migration
         Schema::create('eskul', function (Blueprint $table) {
             $table->id('id_eskul');
             $table->string('nama_eskul');
+            $table->string('kode_eskul');
+            $table->text('deskripsi');
             $table->foreignId('guru_eskul')->references('id_user')->on('users')->onDelete('cascade');
             $table->string('hari');
             $table->time('jam_mulai');
             $table->time('jam_selesai');
+            $table->text('tempat');
             $table->timestamps();
         });
     }

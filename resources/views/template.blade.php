@@ -47,31 +47,32 @@
                         </li>
                     
                         <!-- Menu Data Master -->
-                        <li class="sidebar-item has-sub {{ Request::is('admin/users', 'admin/jurusan', 'admin/ekstrakurikuler') ? 'active' : '' }}">
+                        <li class="sidebar-item has-sub {{ Request::is('admin/users', 'admin/jurusan', 'admin/eskul') ? 'active' : '' }}">
                             <a href="#" class="sidebar-link">
                                 <i class="bi bi-collection "></i>
                                 <span>Data master</span>
                             </a>
                             <ul class="submenu">
+                                 <li class="submenu-item {{ Request::routeIs('admin.jurusan') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.jurusanIndex') }}">Jurusan</a>
+                                </li>
                                 <li class="submenu-item {{ Request::routeIs('admin.users') ? 'active' : '' }}">
                                     <a href="{{ route('admin.users') }}">Users</a>
                                 </li>
-                                <li class="submenu-item {{ Request::routeIs('admin.jurusan') ? 'active' : '' }}">
-                                    <a href="{{ route('admin.jurusanIndex') }}">Jurusan</a>
-                                </li>
-                                <li class="submenu-item {{ Request::routeIs('admin/ekstrakurikuler') ? 'active' : '' }}">
+                                <li class="submenu-item {{ Request::routeIs('admin.ekstrakurikuler') ? 'active' : '' }}">
                                     <a href="{{ route('admin.eskulIndex') }}">Ekstrakurikuler</a>
                                 </li>
                             </ul>
                         </li>
                     
                         <!-- Menu Pendaftaran -->
-                        <li class="sidebar-item {{ Request::is('admin/pendaftaran') ? 'active' : '' }}">
-                            <a href="{{ url('admin/pendaftaran') }}" class="sidebar-link">
+                        <li class="sidebar-item {{ Request::routeIs('admin.pendaftaranIndex') ? 'active' : '' }}">
+                            <a href="{{ route('admin.pendaftaranIndex') }}" class="sidebar-link">
                                 <i class="bi bi-file-earmark-text-fill "></i>
                                 <span>Pendaftaran</span>
                             </a>
                         </li>
+                        
                     
                         <!-- Menu Nilai -->
                         <li class="sidebar-item {{ Request::is('admin/nilai') ? 'active' : '' }}">
@@ -96,6 +97,7 @@
 
             @yield('content')
 
+
             <footer class="mt-auto">
                 <div class="footer clearfix mb-0 text-muted">
                     <div class="float-start">
@@ -115,6 +117,7 @@
     <script src="{{asset ('assets/vendors/apexcharts/apexcharts.js')}}"></script>
     <script src="{{asset ('assets/js/pages/dashboard.js')}}"></script>
     <script src="{{asset ('assets/js/main.js')}}"></script>
+    
 </body>
 
 </html>

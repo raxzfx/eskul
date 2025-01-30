@@ -65,6 +65,7 @@
           <label for="validationCustom04" class="form-label">Tingkat Kelas</label>
           <select class="form-select" id="validationCustom04" name="tingkat_kelas" required>
               <option disabled>Pilih tingkat kelas anda</option>
+              <option value="-" {{ $user->tingkat_kelas == '-' ? 'selected' : '' }}>-</option>
               <option value="10" {{ $user->tingkat_kelas == '10' ? 'selected' : '' }}>10</option>
               <option value="11" {{ $user->tingkat_kelas == '11' ? 'selected' : '' }}>11</option>
               <option value="12" {{ $user->tingkat_kelas == '12' ? 'selected' : '' }}>12</option>
@@ -74,12 +75,15 @@
           </div>
       </div>
 
+
       <div class="col-md-">
         <label for="validationCustom04" class="form-label">Role</label>
         <select class="form-select" id="validationCustom04" name="role" required>
             <option disabled>Pilih role</option>
-            <option value="guru" {{ $user->role == 'guru' ? 'selected' : '' }}>Guru</option>
+            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>admin</option>
             <option value="siswa" {{ $user->role == 'siswa' ? 'selected' : '' }}>Siswa</option>
+            <option value="kesiswaan" {{ $user->role == 'kesiswaan' ? 'selected' : '' }}>kesiswaan</option>
+            <option value="pembinaEskul" {{ $user->role == 'pembinaEskul' ? 'selected' : '' }}>pembina eskul</option>
         </select>
         <div class="invalid-feedback">
             Pilih role sesuai dengan anda!

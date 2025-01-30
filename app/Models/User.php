@@ -22,6 +22,8 @@ class User extends Authenticatable
         'nama_jurusan',
         'nomor_telepon',
         'tingkat_kelas',
+        'nis_nig',
+        'password',
         'role'
     ];
 
@@ -52,5 +54,17 @@ class User extends Authenticatable
     protected $table = 'users';
     public function jurusan(){
         return $this->belongsTo(Jurusan::class, 'nama_jurusan','id_jurusan');
+    }
+    public function eskul(){
+        return $this->hasMany(Eskul::class, 'guru_eskul','id_user');
+    }
+    public function pendaftaran(){
+        return $this->hasMany(Pendaftaran::class, 'nama_murid','id_user');
+    }
+    public function kelas(){
+        return $this->hasMany(Pendaftaran::class, 'tingkat_kelas','id_user');
+    }
+    public function nis(){
+        return $this->hasMany(Pendaftaran::class, 'nis_nigUser', 'id_user');
     }
 }

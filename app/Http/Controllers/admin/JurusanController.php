@@ -31,8 +31,21 @@ class JurusanController extends Controller
     public function store(Request $request)
     {
         $validate = $request->validate([
-            'nama_jurusan' => 'required'
+            'nama_jurusan' => 'required',
+            'kode_jurusan' => 'required'
         ]);
+
+        //jika ada konflik nama jurusan yang sama
+        $konflik = Jurusan::where('nama_jurusan', $request->nama_jurusan)->exists();
+        if ($konflik) {
+            return redirect()->back()->withErrors(['error'=> 'jurusan sudah terdaftar, silahkan masukan dengan nama jurusan yang lain']);
+        }
+
+        //konflik jika ada kode jurusan yang sama
+        $conflict = Jurusan::where('kode_jurusan', $request->kode_jurusan)->exists();
+        if ($conflict) {
+            return redirect()->back()->withErrors(['error'=> 'kode jurusan sudah terdaftar, silahkan masukan dengan kode jurusan yang lain']);
+        }
 
         Jurusan::create($validate);
         return redirect()->route('admin.jurusanIndex');
@@ -51,7 +64,8 @@ class JurusanController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+        return view('admin.form.updateJurusan',compact('jurusan'));
     }
 
     /**
@@ -59,7 +73,13 @@ class JurusanController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_jurusan' => 'required' 
+        ]);
+
+        $jurusan = Jurusan::findOrFail($id);
+        $jurusan->update($request->all());
+        return redirect()->route('admin.jurusanIndex')->with('success','data berhasil ter update');
     }
 
     /**
@@ -67,6 +87,9 @@ class JurusanController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $jurusan = Jurusan::findOrFail($id);
+
+        $jurusan->delete();
+        return redirect()->route('admin.jurusanIndex')->with('success','data berhasil terhapus');
     }
 }
